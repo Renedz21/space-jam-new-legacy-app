@@ -1,73 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script type="text/javascript" src="main.js">
-    </script>
-    <title>Tune Squad Coaches App</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <script type="text/javascript" src="main.js">
+  </script>
+  <title>Tune Squad Coaches App</title>
+</head>
 
-  <body>
-    <main>
-      <h1><img style="vertical-align:middle" src="images/SpaceJamANewLegacyLogo.png"><br>Water Break App</h1>
-    </main>
+<body>
+  <div class="header">
+    <img alt="logo" src="images/SpaceJamANewLegacyLogo.png">
+    <h1>Aplicación de reclutamiento</h1>
+  </div>
 
-    <div id="gameSetup" class="gameSetup">
-      <div id="uploadStats" class="topColumn">
-        <p class="topTitle">Upload your game_stats.csv file here</p>
-        <input type="file" id="playerData">
-        <script type="text/javascript"> 
-          document.getElementById('playerData') 
-              .addEventListener('change', function() { 
-              
-              var playerNamesFile;
-              var fr=new FileReader(); 
-              fr.onload=function(){ 
-                playerStatsFile=fr.result; 
-                processPlayers(playerStatsFile);
-              } 
-                
-              fr.readAsText(this.files[0]); 
+  <div class="per">
+    <p>PER: Player efficiency rating ~ Calificación de eficiencia del jugador</p>
+  </div>
+
+  <form name="form">
+    <div class="form_div">
+      <label for="inputValue">Ingrese el PER del equipo adversario</label>
+      <input type="number" name="inputValue" id="inputValue" title="number">
+      <label id="value"></label>
+    </div>
+    <button id="getNumber" type="button" onclick="obtenerDatos()">Capturar</button>
+  </form>
+
+  <div id="gameSetup" class="gameSetup">
+    <div id="uploadStats" class="topColumn">
+      <p class="topTitle">Sube tu archivo game_stats.csv aqui!</p>
+      <input type="file" id="playerData">
+      <script type="text/javascript">
+        document.getElementById('playerData')
+          .addEventListener('change', function () {
+
+            var playerNamesFile;
+            var fr = new FileReader();
+            fr.onload = function () {
+              playerStatsFile = fr.result;
+              processPlayers(playerStatsFile);
+            }
+
+            fr.readAsText(this.files[0]);
           }) 
-        </script> 
-      </div>
-
-      <div id="gameButton" class="topColumn">
-        <p class="topTitle"></p>
-        <button type="button" id="start" class="start" onclick="startNextQuarter()">Start the Game!</button>
-      </div>
-      
-      <div id="avePER" class="topColumn">
-        <p class="topTitle">Average PER:</p>
-        <p class="topTitle" id="averagePER"></p>
-      </div>
+      </script>
     </div>
 
-    <div id="gamePlay" class="gamePlay">
-      <div id="bench" class="column">
-        <div class="timer">Water Break</div>
-        <div id="playersOnBench"></div>
-        <p class="title">BENCH</p>
-      </div>
-
-      <div id="court" class="column">
-        <div id="timer" class="timer">TIME: 00:00</div>
-        <p id="quarter" class="subtitle"></p>
-        <div id="playersOnCourt"></div>
-        <p class="subtitle" id="currentPER"></p>
-        <p class="title">COURT</p>
-      </div>
-      
-      <div id="stats" class="column">
-        <div id="playerCards"><table id="playerTable"></table></div>
-        <p class="title">STATS</p>
-      </div>
+    <div id="gameButton" class="topColumn">
+      <p class="topTitle"></p>
+      <button type="button" id="start" class="start" onclick="startNextQuarter()">Empezar el juego!</button>
     </div>
-  </body>
-  <footer style="text-align: center;">
-    © 2020 Warner Bros. Ent. All Rights Reserved
-  </footer>
+
+    <div id="avePER" class="topColumn">
+      <p class="topTitle">PER Promedio:</p>
+      <p class="topTitle" id="averagePER"></p>
+    </div>
+  </div>
+
+  <div id="gamePlay" class="gamePlay">
+    <div id="bench" class="column">
+      <div class="timer">Descanso</div>
+      <div id="playersOnBench"></div>
+      <p class="title">BANCA</p>
+    </div>
+
+    <div id="court" class="column">
+      <div id="timer" class="timer">TIEMPO: 00:00</div>
+      <p id="quarter" class="subtitle"></p>
+      <div id="playersOnCourt"></div>
+      <p class="subtitle" id="currentPER"></p>
+      <p class="title">CANCHA</p>
+    </div>
+
+    <div id="stats" class="column">
+      <div id="playerCards">
+        <table id="playerTable"></table>
+      </div>
+      <p class="title">STATS</p>
+    </div>
+  </div>
+</body>
+
 </html>
